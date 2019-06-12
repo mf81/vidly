@@ -7,8 +7,12 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", [auth, admin], async (req, res) => {
-  const users = await Users.find().select("-password");
-  res.send(users);
+  try {
+    const users = await Users.find().select("-password");
+    res.send(users);
+  } catch (err) {
+    res.status(500).send("Something went wrong.");
+  }
 });
 
 router.get("/me", auth, async (req, res) => {

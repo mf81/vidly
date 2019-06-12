@@ -4,8 +4,12 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const result = await Movies.find();
-  res.send(result);
+  try {
+    const result = await Movies.find();
+    res.send(result);
+  } catch (err) {
+    res.status(500).send("Something went wrong.");
+  }
 });
 
 router.get("/:id", async (req, res) => {

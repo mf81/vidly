@@ -1,3 +1,5 @@
+require("express-async-errors");
+const error = require("./middleware/errorMiddleware");
 const config = require("config");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
@@ -11,8 +13,6 @@ const mongoose = require("mongoose");
 const express = require("express");
 const helmet = require("helmet");
 const app = express();
-
-//console.log("vidly_jwtPrivateKey: ", process.env.vidly_jwtPrivateKey);
 
 if (!config.get("jwtPrivateKey")) {
   console.log("FATAL ERROR: jwtPrivateKey is not defined.");
@@ -29,6 +29,8 @@ app.use("/api/movies", movies);
 app.use("/api/rentals", rentals);
 app.use("/api/users", users);
 app.use("/api/auth", auth);
+
+app.use(error);
 
 mongoose.connect(
   "mongodb://localhost/vidly",

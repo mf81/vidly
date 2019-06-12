@@ -3,8 +3,12 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const getCustomers = await Customers.find().select({ name: 1, phone: 1 });
-  res.send(getCustomers);
+  try {
+    const getCustomers = await Customers.find().select({ name: 1, phone: 1 });
+    res.send(getCustomers);
+  } catch (err) {
+    res.status(500).send("Something went wrong.");
+  }
 });
 
 router.get("/:id", async (req, res) => {

@@ -1,8 +1,17 @@
 const auth = require("../middleware/authMiddleware");
 const admin = require("../middleware/adminMiddleware");
+//const asyncMiddleware = require("../middleware/asyncMiddleware");
 const { Genres, validate } = require("../models/genresModel");
 const express = require("express");
 const router = express.Router();
+
+// router.get(
+//   "/",
+//   asyncMiddleware(async (req, res) => {
+//     const genres = await Genres.find().select({ gen: 1 });
+//     res.send(genres);
+//   })
+// );
 
 router.get("/", async (req, res) => {
   const genres = await Genres.find().select({ gen: 1 });
@@ -10,12 +19,8 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  try {
-    const genres = await Genres.find({ _id: req.params.id }).select({ gen: 1 });
-    res.send(genres);
-  } catch (err) {
-    return res.status("404").send(`No genres ${err}`);
-  }
+  const genres = await Genres.find({ _id: req.params.id }).select({ gen: 1 });
+  res.send(genres);
 });
 
 router.post("/", auth, async (req, res) => {
