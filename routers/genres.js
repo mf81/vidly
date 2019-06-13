@@ -14,7 +14,7 @@ const router = express.Router();
 // );
 
 router.get("/", async (req, res) => {
-  throw new Error("Could not get the genres.");
+  //throw new Error("Could not get the genres.");
   const genres = await Genres.find().select({ gen: 1 });
   rs.send(genres);
 });
