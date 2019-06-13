@@ -9,12 +9,9 @@ const Fawn = require("fawn");
 Fawn.init(mongoose);
 
 router.get("/", async (req, res) => {
-  try {
-    const result = await Movies.find().sort("-dateOut");
-    res.send(result);
-  } catch (err) {
-    res.status(500).send("Something went wrong.");
-  }
+  const result = await Movies.find().sort("-dateOut");
+  res.send(result);
+  res.status(500).send("Something went wrong.");
 });
 
 // router.get("/:id", async (req, res) => {
