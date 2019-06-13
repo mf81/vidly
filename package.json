@@ -23,7 +23,7 @@
     "lodash": "^4.17.11",
     "mongoose": "^5.5.11",
     "npm": "^6.9.0",
-    "winston": "^2.4.0",
-    "winston-mongodb": "^2.0.0"
+    "winston": "^3.2.1",
+    "winston-mongodb": "^5.0.0"
   }
 }
