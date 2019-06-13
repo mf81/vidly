@@ -22,6 +22,8 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.11",
     "mongoose": "^5.5.11",
-    "winston": "^2.4.0"
+    "npm": "^6.9.0",
+    "winston": "^2.4.0",
+    "winston-mongodb": "^2.0.0"
   }
 }
