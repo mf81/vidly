@@ -1,0 +1,2 @@
+{"message":"rs is not defined","stack":"ReferenceError: rs is not defined\n    at router.get (/Users/maciejfijalkowski/Documents/_NODE/vidly/routers/genres.js:19:3)","level":"error","timestamp":"2019-06-13T10:16:56.237Z"}
+{"message":"rs is not defined","stack":"ReferenceError: rs is not defined\n    at router.get (/Users/maciejfijalkowski/Documents/_NODE/vidly/routers/genres.js:19:3)","level":"error","timestamp":"2019-06-13T10:17:36.236Z"}
