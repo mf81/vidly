@@ -1,5 +1,6 @@
 const auth = require("../middleware/authMiddleware");
 const admin = require("../middleware/adminMiddleware");
+const password = require("../middleware/passwordHashingMiddleware");
 const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const { Users, validate } = require("../models/usersModel");
@@ -16,16 +17,16 @@ router.get("/me", auth, async (req, res) => {
   res.send(user);
 });
 
-router.post("/", [auth, admin], async (req, res) => {
+router.post("/", [auth, admin, password], async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   let users = await Users.findOne({ email: req.body.email });
   if (users) return res.status(400).send("E-mail exist ...");
 
-  const { password } = req.body;
-  const salt = await bcrypt.genSalt(10);
-  req.body.password = await bcrypt.hash(password, salt);
+  // const { password } = req.body;
+  // const salt = await bcrypt.genSalt(10);
+  // req.body.password = await bcrypt.hash(password, salt);
 
   users = new Users(req.body);
   try {
@@ -39,14 +40,14 @@ router.post("/", [auth, admin], async (req, res) => {
   }
 });
 
-router.put("/:id", [auth, admin], async (req, res) => {
+router.put("/:id", [auth, admin, password], async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   try {
-    const { password } = req.body;
-    const salt = await bcrypt.genSalt(10);
-    req.body.password = await bcrypt.hash(password, salt);
+    // const { password } = req.body;
+    // const salt = await bcrypt.genSalt(10);
+    // req.body.password = await bcrypt.hash(password, salt);
 
     const user = await Users.updateOne({ _id: req.params.id }, req.body, {
       new: true
@@ -71,11 +72,6 @@ router.delete("/:id", [auth, admin], async (req, res) => {
 
 module.exports = router;
 
-//   const response = await Promise.all([
-//     axios.get("/some_url_endpoint"),
-//     axios.get("/some_url_endpoint")
-//   ]);
-
 // function resolveAfter2Seconds() {
 //   return new Promise(resolve => {
 //     setTimeout(() => {
@@ -90,5 +86,33 @@ module.exports = router;
 //     const salt = bcrypt.genSalt(10);
 //     const res = bcrypt.hash(password, salt);
 //     resolve(res);
+//   });
+// }
+
+// async function passwordHash(reqBody) {
+//   return new Promise(resolve => {
+//     const { password } = reqBody;
+//     const salt = await bcrypt.genSalt(10);
+//     const res = await bcrypt.hash(password, salt);
+//     resolve(res);
+//   });
+// }
+
+// async function passwordHash(reqBody) {
+//   const { password } = reqBody;
+//   const salt = await bcrypt.genSalt(10);
+//   const res = await bcrypt.hash(password, salt);
+//   return res;
+// }
+
+// const b = hello();
+
+// b.then(x => console.log(x)); // Hello Alligator!
+
+// function resolveAfter2Seconds() {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve('resolved');
+//     }, 2000);
 //   });
 // }

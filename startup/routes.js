@@ -7,8 +7,6 @@ const auth = require("../routers/auth");
 const error = require("../middleware/errorMiddleware");
 
 module.exports = function(app) {
-  console.log("routing");
-
   app.use("/api/genres", genres);
   app.use("/api/customers", customers);
   app.use("/api/movies", movies);

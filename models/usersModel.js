@@ -37,7 +37,7 @@ usersSchema.methods.generateAuthToken = function() {
 function validate(value) {
   const complexityOptions = {
     min: 10,
-    max: 30,
+    max: 255,
     lowerCase: 1,
     upperCase: 1,
     numeric: 1,
