@@ -1,4 +1,3 @@
-const express = require("express");
 const genres = require("../routers/genres");
 const customers = require("../routers/customers");
 const movies = require("../routers/movies");
