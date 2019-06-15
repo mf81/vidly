@@ -1,16 +1,33 @@
 const winston = require("winston");
 require("winston-mongodb");
 
-module.exports = function() {
-  winston.exceptions.handle(
-    new winston.transports.File({ filename: "uncaughtExceptions.log" })
-  );
-
-  process.on("unhandledRejection", ex => {
-    throw ex;
+function loggerWinston() {
+  const logger = winston.createLogger({
+    level: "info",
+    format: winston.format.json(),
+    defaultMeta: { service: "user-service" },
+    exitOnError: false,
+    transports: [
+      new winston.transports.File({ filename: "error.log", level: "error" }),
+      new winston.transports.File({ filename: "all.log" }),
+      new winston.transports.MongoDB({
+        db: "mongodb://localhost/vidly",
+        level: "error"
+      })
+    ],
+    exceptionHandlers: [
+      new winston.transports.File({ filename: "exceptions.log" })
+    ]
   });
 
-  winston.add(
-    new winston.transports.MongoDB({ db: "mongodb://localhost/vidly" })
-  );
-};
+  if (process.env.NODE_ENV !== "production") {
+    logger.add(
+      new winston.transports.Console({
+        format: winston.format.simple()
+      })
+    );
+    return logger;
+  }
+}
+
+module.exports.loggerWinston = loggerWinston;

@@ -1,6 +1,8 @@
 const winston = require("winston");
 const mongoose = require("mongoose");
 
+const { loggerWinston } = require("../startup/winston");
+
 module.exports = function() {
   const mongodbUri = "mongodb://localhost/vidly";
   const settings = {
@@ -11,10 +13,10 @@ module.exports = function() {
   };
   mongoose.connect(mongodbUri, settings, function(err, dbref) {
     if (!err) {
-      console.log("Mongodb connected");
+      loggerWinston().info("Mongodb connected");
       db = dbref;
     } else {
-      console.log("Error while connecting to mongoDB" + err);
+      loggerWinston().error("Error while connecting to mongoDB" + err);
     }
   });
 };
