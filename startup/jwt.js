@@ -1,5 +1,5 @@
 //const error = require("./middleware/errorMiddleware");
-const { loggerWinston } = require("../startup/winston");
+const loggerWinston = require("../startup/winston");
 const config = require("config");
 
 module.exports = function() {

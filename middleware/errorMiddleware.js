@@ -1,4 +1,4 @@
-const { loggerWinston } = require("../startup/winston");
+const loggerWinston = require("../startup/winston");
 
 module.exports = function(err, req, res, next) {
   console.log("jestem w bledach");

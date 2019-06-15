@@ -1,7 +1,7 @@
 const winston = require("winston");
 require("winston-mongodb");
 
-function loggerWinston() {
+module.exports = function() {
   const logger = winston.createLogger({
     level: "info",
     format: winston.format.json(),
@@ -28,6 +28,4 @@ function loggerWinston() {
     );
   }
   return logger;
-}
-
-module.exports.loggerWinston = loggerWinston;
+};

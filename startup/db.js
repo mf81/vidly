@@ -1,7 +1,5 @@
-const winston = require("winston");
 const mongoose = require("mongoose");
-
-const { loggerWinston } = require("../startup/winston");
+const loggerWinston = require("../startup/winston");
 
 module.exports = function() {
   const mongodbUri = "mongodb://localhost/vidly";

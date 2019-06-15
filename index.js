@@ -11,7 +11,7 @@ app.use(express.json());
 require("./startup/db")(app);
 require("./startup/routes")(app);
 require("./startup/jwt")(app);
-const { loggerWinston } = require("./startup/winston");
+const loggerWinston = require("./startup/winston");
 
 app.use(helmet());
 const port = process.env.PORT || 3000;
