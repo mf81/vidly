@@ -57,18 +57,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//   //   const del = await Customers.findByIdAndRemove(
-//   //     { _id: req.params.id },
-//   //     function(err, res) {
-//   //       if (err) {
-//   //         console.log("error in deleting yo!");
-//   //         console.error(err);
-//   //       } else {
-//   //         console.log("data all gone and deleted yo");
-//   //         res.status(204);
-//   //       }
-//   //     }
-//   //   );
-// });
-
 module.exports = router;
