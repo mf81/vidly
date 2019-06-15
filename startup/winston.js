@@ -26,8 +26,8 @@ function loggerWinston() {
         format: winston.format.simple()
       })
     );
-    return logger;
   }
+  return logger;
 }
 
 module.exports.loggerWinston = loggerWinston;
