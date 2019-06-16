@@ -1,6 +1,5 @@
 const express = require("express");
 const helmet = require("helmet");
-// const winston = require("winston");
 require("express-async-errors");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
