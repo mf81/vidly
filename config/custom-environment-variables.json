@@ -1,4 +1,3 @@
 {
-  "jwtPrivateKey": "vidly_jwtPrivateKey",
-  "NODE_ENV": "NODE_ENV"
+  "jwtPrivateKey": "vidly_jwtPrivateKey"
 }

@@ -14,6 +14,8 @@ const loggerWinston = require("./startup/winston");
 
 app.use(helmet());
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   loggerWinston().info(`Słucham na porcie: ${port}`);
 });
+
+module.exports = server;
