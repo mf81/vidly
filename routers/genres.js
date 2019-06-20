@@ -1,26 +1,18 @@
 const auth = require("../middleware/authMiddleware");
 const admin = require("../middleware/adminMiddleware");
-// const asyncMiddleware = require("../middleware/asyncMiddleware");
+const validateObjectId = require("../middleware/validateObjectId");
 const { Genres, validate } = require("../models/genresModel");
 const express = require("express");
 const router = express.Router();
 
-// router.get(
-//   "/",
-//   asyncMiddleware(async (req, res) => {
-//     const genres = await Genres.find().select({ gen: 1 });
-//     res.send(genres);
-//   })
-// );
-
 router.get("/", async (req, res) => {
-  //throw new Error("Could not get the genres.");
   const genres = await Genres.find().select({ gen: 1 });
   res.send(genres);
 });
 
-router.get("/:id", async (req, res) => {
-  const genres = await Genres.find({ _id: req.params.id }).select({ gen: 1 });
+router.get("/:id", validateObjectId, async (req, res) => {
+  const genres = await Genres.findById(req.params.id);
+  if (!genres) return res.status(404).send("No ID find");
   res.send(genres);
 });
 
