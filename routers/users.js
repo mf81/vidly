@@ -17,7 +17,7 @@ router.get("/me", auth, async (req, res) => {
   res.send(user);
 });
 
-router.post("/", [auth, admin, validation, password], async (req, res) => {
+router.post("/", [validation, password], async (req, res) => {
   let users = await Users.findOne({ email: req.body.email });
   if (users) return res.status(400).send("E-mail exist ...");
 
