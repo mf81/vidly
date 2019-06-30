@@ -1,5 +1,5 @@
 {
   "jwtPrivateKey": "",
   "NODE_ENV": "",
-  "db": "mongodb://admin:admin12345@mongo/vidly"
+  "db": "mongodb://mongo/vidly"
 }

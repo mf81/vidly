@@ -1,6 +1,6 @@
 {
   "jwtPrivateKey": "MaciejFIjałkowski",
   "NODE_ENV": "",
-  "db": "mongodb://admin:admin12345@mongo/vidly_tests",
-  "PORT": "3001"
+  "db": "mongodb://mongo/vidly_tests",
+  "PORT": "3000"
 }

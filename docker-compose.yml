@@ -1,4 +1,4 @@
-version: "3.0"
+version: "3.1"
 services:
   app:
     container_name: docker-node-mongo
@@ -6,12 +6,23 @@ services:
     build: .
     env_file:
       - .env
+    environment:
+      dbString: ${dbString}
     ports:
       - "80:3000"
     links:
       - mongo
+    depends_on:
+      - mongo
+    environment:
+      WAIT_HOSTS: mongo:27017
   mongo:
-    container_name: mongo
-    image: mongo
-    ports:
-      - "27017:27017"
+    image: mongo:4.0.3
+    env_file: .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    
+    volumes:
+      - ../data/db:/data/db
