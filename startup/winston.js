@@ -1,7 +1,10 @@
 const winston = require("winston");
 require("winston-mongodb");
 
+const config = require("config");
+
 module.exports = function() {
+  const db = config.get("db");
   const logger = winston.createLogger({
     level: "info",
     format: winston.format.json(),
@@ -11,7 +14,7 @@ module.exports = function() {
       new winston.transports.File({ filename: "error.log", level: "error" }),
       new winston.transports.File({ filename: "all.log" }),
       new winston.transports.MongoDB({
-        db: "mongodb://localhost/vidly",
+        db,
         level: "error"
       })
     ],
